@@ -16,15 +16,15 @@ const LoginTile = ({ type }) => {
   const [roles, setRoles] = useState([]);
 
 
-  const roleType = async () => {
-    const reponse = axios.get("http://192.168.1.11:5000/api/CommonData/getAllRoles")
-    setRoles(reponse);
-  }
+  // const roleType = async () => {
+  //   const reponse = axios.get("http://192.168.1.11:5000/api/CommonData/getAllRoles")
+  //   setRoles(reponse);
+  // }
 
 
-  useEffect(() => {
-    roleType();
-  }, [])
+  // useEffect(() => {
+  //   roleType();
+  // }, [])
 
 
   // const roles = [
@@ -56,7 +56,7 @@ const LoginTile = ({ type }) => {
         <h2 className="login-title">Sign in with email</h2>
         <p className="login-subtitle">Welcome to the ERP</p>
         <form className="login-form">
-          <ReactSelect values={roles} setValues={setValues} />
+          {/* <ReactSelect values={roles} setValues={setValues} /> */}
           <input
             type="email"
             placeholder="Email"
@@ -64,13 +64,13 @@ const LoginTile = ({ type }) => {
             value={values?.email}
             onChange={(e) => handleInputChange(e, "email")}
           />
-          {/* <div className="login-password-wrapper"> */}
-          {type === "login" && <input
+
+          <input
             type="password"
             placeholder="Password"
             className="login-input"
             onChange={(e) => handleInputChange(e, "password")}
-          />}
+          />
           {type === "registration" && <>
             <input
               type="text"
@@ -90,7 +90,7 @@ const LoginTile = ({ type }) => {
           <div className="forgot-link">
             <a href="#">Forgot password?</a>
           </div>
-          <button type="submit" className="login-button">
+          <button type="submit" className="login-button" >
             Get Started
           </button>
         </form>

@@ -4,14 +4,18 @@ body {
   color: black;
   overflow-x: hidden;
 }
-.loginMain {
+/* .loginMain {
   background-image: url("https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L2hpcHBvdW5pY29ybl8zZF9pbGx1c3RyYXRpb25fb2ZfYmFza2V0YmFsbF9pbmRvb3JfaGlnaF9zY2hvb2xfZ181MzNhODA3Yi0yZjg3LTQyMWYtODAyOS1lODc3MGVhOTNkMTdfMS5qcGc.jpg");
   height: 100vh;
   width: 100vw;
   background-size: cover;
-}
+} */
 
 .login-wrapper {
+  background-image: url("https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L2hpcHBvdW5pY29ybl8zZF9pbGx1c3RyYXRpb25fb2ZfYmFza2V0YmFsbF9pbmRvb3JfaGlnaF9zY2hvb2xfZ181MzNhODA3Yi0yZjg3LTQyMWYtODAyOS1lODc3MGVhOTNkMTdfMS5qcGc.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
   color: black;
   min-height: 100vh;
   display: flex;

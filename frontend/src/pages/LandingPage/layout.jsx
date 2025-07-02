@@ -6,7 +6,7 @@ import "../../styles/badge.css"
 import "../../styles/layout.css"
 
 export const metadata = {
-  title: "EduManage - School ERP System",
+  title: "CampusHub - School ERP System",
   description: "Complete School ERP Solution for Modern Education",
 }
 

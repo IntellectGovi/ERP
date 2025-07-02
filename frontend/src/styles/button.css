@@ -63,6 +63,7 @@
 .btn-default-size {
   height: 2.5rem;
   padding: 0 1rem;
+  width: fit-content;
 }
 
 .btn-lg {

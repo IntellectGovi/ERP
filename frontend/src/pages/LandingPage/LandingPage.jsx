@@ -15,15 +15,21 @@ import {
     Star,
 } from "lucide-react"
 import { Link } from "react-router-dom"
+import "../../styles/index.css"
+import "../../styles/button.css"
+import "../../styles/input.css"
+import "../../styles/card.css"
+import "../../styles/badge.css"
+import "../../styles/layout.css"
 
 export default function SchoolERPLanding() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col h-full w-full">
             {/* Header */}
             <header className="header">
                 <Link className="logo" href="#">
                     <GraduationCap className="icon-xl text-blue-600" />
-                    <span className="logo-text">EduManage</span>
+                    <span className="logo-text">CampusHub</span>
                 </Link>
                 <nav className="nav">
                     <Link className="nav-link" href="#features">
@@ -40,7 +46,7 @@ export default function SchoolERPLanding() {
                     </Link>
                 </nav>
                 <div className="header-actions">
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="md" redirect="/login">
                         Login
                     </Button>
                     <Button size="sm">Get Started</Button>
@@ -86,7 +92,7 @@ export default function SchoolERPLanding() {
                                 <img
                                     alt="School ERP Dashboard"
                                     height="400"
-                                    src="/placeholder.svg?height=400&width=600"
+                                    src="https://imgs.search.brave.com/6WDCzPPYkuwMj6pKKUH5-SjzHAvVYP2tYdCOymm4IIs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Ym9sbHl3b29kc2hh/YWRpcy5jb20vaW1n/L2FydGljbGUtMjAy/MjcxODgxNjQ0NTk2/MDI5OTAwMC5QTkc?height=400&width=600"
                                     width="600"
                                 />
                             </div>
@@ -260,7 +266,7 @@ export default function SchoolERPLanding() {
                             <div className="benefits-content">
                                 <div className="space-y-4">
                                     <Badge className="badge-green">Proven Results</Badge>
-                                    <h2 className="section-title">Why Schools Choose EduManage</h2>
+                                    <h2 className="section-title">Why Schools Choose CampusHub</h2>
                                     <p className="section-description">
                                         Join thousands of schools worldwide who have transformed their operations with our ERP system.
                                     </p>
@@ -299,9 +305,12 @@ export default function SchoolERPLanding() {
                                 <img
                                     alt="Benefits illustration"
                                     height="400"
-                                    src="/placeholder.svg?height=400&width=550"
+                                    src="https://imgs.search.brave.com/rukM38O2p6A7ylJOmZU8BiWGayWRerFVmZ4Wah-NmG4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saDMu/Z29vZ2xldXNlcmNv/bnRlbnQuY29tL3Av/QUYxUWlwT3dGZUtw/VVNfOW5PSElZanlM/ZURwVWhSTUs5NTFG/ZE95cXduVkw9czEz/NjAtdzEzNjAtaDEw/MjA?height=400&width=550"
                                     width="550"
                                     className="rounded-xl"
+                                    style={{
+                                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1);"
+                                    }}
                                 />
                             </div>
                         </div>
@@ -315,7 +324,7 @@ export default function SchoolERPLanding() {
                             <div className="space-y-4">
                                 <h2 className="section-title">Trusted by Educational Leaders</h2>
                                 <p className="section-description">
-                                    See what school administrators and educators are saying about EduManage.
+                                    See what school administrators and educators are saying about CampusHub.
                                 </p>
                             </div>
                         </div>
@@ -332,7 +341,7 @@ export default function SchoolERPLanding() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="testimonial-content">
-                                        "EduManage has completely transformed how we manage our school. The automation features have saved
+                                        "CampusHub has completely transformed how we manage our school. The automation features have saved
                                         us countless hours."
                                     </p>
                                     <div className="testimonial-author">
@@ -340,7 +349,7 @@ export default function SchoolERPLanding() {
                                             <span className="author-initials">SM</span>
                                         </div>
                                         <div className="author-info">
-                                            <h4>Sarah Mitchell</h4>
+                                            <h4>Govind Upadhyay</h4>
                                             <p>Principal, Greenwood High</p>
                                         </div>
                                     </div>
@@ -367,7 +376,7 @@ export default function SchoolERPLanding() {
                                             <span className="author-initials">RJ</span>
                                         </div>
                                         <div className="author-info">
-                                            <h4>Robert Johnson</h4>
+                                            <h4>Akshay Kumar</h4>
                                             <p>Administrator, Oak Valley School</p>
                                         </div>
                                     </div>
@@ -393,7 +402,7 @@ export default function SchoolERPLanding() {
                                             <span className="author-initials">LC</span>
                                         </div>
                                         <div className="author-info">
-                                            <h4>Lisa Chen</h4>
+                                            <h4>Black Devil(Devi prasad)</h4>
                                             <p>IT Director, Metro Academy</p>
                                         </div>
                                     </div>
@@ -421,7 +430,7 @@ export default function SchoolERPLanding() {
                                     <CardTitle>Starter</CardTitle>
                                     <CardDescription>Perfect for small schools</CardDescription>
                                     <div className="pricing-price">
-                                        $29<span className="period">/month</span>
+                                        4,000 INR<span className="period">/month</span>
                                     </div>
                                 </CardHeader>
                                 <CardContent>
@@ -439,7 +448,7 @@ export default function SchoolERPLanding() {
                                             Email support
                                         </li>
                                     </ul>
-                                    <Button className="w-full bg-transparent" variant="outline">
+                                    <Button className="w-full bg-transparent" variant="outline" style={{ width: "16vw" }}>
                                         Get Started
                                     </Button>
                                 </CardContent>
@@ -451,7 +460,7 @@ export default function SchoolERPLanding() {
                                     <CardTitle>Professional</CardTitle>
                                     <CardDescription>Ideal for medium schools</CardDescription>
                                     <div className="pricing-price">
-                                        $79<span className="period">/month</span>
+                                        6,763.98 INR<span className="period">/month</span>
                                     </div>
                                 </CardHeader>
                                 <CardContent>
@@ -510,7 +519,7 @@ export default function SchoolERPLanding() {
                             <div className="space-y-4">
                                 <h2 className="section-title">Ready to Transform Your School?</h2>
                                 <p className="section-description">
-                                    Join thousands of schools worldwide. Start your free trial today and see the difference EduManage can
+                                    Join thousands of schools worldwide. Start your free trial today and see the difference CampusHub can
                                     make.
                                 </p>
                             </div>
@@ -532,9 +541,9 @@ export default function SchoolERPLanding() {
             <footer className="footer">
                 <div className="footer-brand">
                     <GraduationCap className="icon-md text-blue-600" />
-                    <span className="footer-brand-text">EduManage</span>
+                    <span className="footer-brand-text">CampusHub</span>
                 </div>
-                <p className="footer-copyright">© 2024 EduManage. All rights reserved.</p>
+                <p className="footer-copyright">© 2024 CampusHub. All rights reserved.</p>
                 <nav className="footer-nav">
                     <Link href="#">Privacy Policy</Link>
                     <Link href="#">Terms of Service</Link>
