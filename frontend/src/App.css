@@ -1,3 +1,5 @@
+/* @import "tailwindcss"; */
+
 body {
   color: black;
 }
@@ -158,12 +160,4 @@ body {
 .social-icons img {
   width: 1.9rem;
   height: 1.9rem;
-}
-
-.dropdown-container {
-  @apply card flex justify-center;
-}
-
-.dropdown-select {
-  @apply w-full md:w-[14rem];
 }
