@@ -19,7 +19,6 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.22.0",
     "lucide-react": "^0.525.0",
-    "material-ui": "^0.20.0",
     "primereact": "^10.9.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
