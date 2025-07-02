@@ -16,15 +16,18 @@
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/vite": "^4.1.11",
     "axios": "^1.10.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.22.0",
     "lucide-react": "^0.525.0",
     "material-ui": "^0.20.0",
     "primereact": "^10.9.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hot-toast": "^2.5.2",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.3",
-    "react-select": "^5.10.1"
+    "react-select": "^5.10.1",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

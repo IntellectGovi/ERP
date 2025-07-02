@@ -21,10 +21,13 @@ export default function ReactSelect(values, setValues) {
         label="Age"
         onChange={handleChange}
       >
-        <MenuItem value={10}>Student</MenuItem>
-        <MenuItem value={20}>Faculty</MenuItem>
-        <MenuItem value={30}>Admin</MenuItem>
+        {values?.map((ele, index) => (
+          <MenuItem key={index} value={ele?.id}>
+            {ele?.name}
+          </MenuItem>
+        ))}
+
       </Select>
-    </FormControl>
+    </FormControl >
   );
 }
