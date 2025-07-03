@@ -133,6 +133,16 @@
   height: auto;
 }
 
+.IllustrationImage {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  width: 100%;
+  height: auto;
+}
+
 @media (min-width: 400px) {
   .hero-actions {
     flex-direction: row;

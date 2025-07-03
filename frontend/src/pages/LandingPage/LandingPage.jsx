@@ -307,7 +307,7 @@ export default function SchoolERPLanding() {
                                     height="400"
                                     src="https://imgs.search.brave.com/rukM38O2p6A7ylJOmZU8BiWGayWRerFVmZ4Wah-NmG4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saDMu/Z29vZ2xldXNlcmNv/bnRlbnQuY29tL3Av/QUYxUWlwT3dGZUtw/VVNfOW5PSElZanlM/ZURwVWhSTUs5NTFG/ZE95cXduVkw9czEz/NjAtdzEzNjAtaDEw/MjA?height=400&width=550"
                                     width="550"
-                                    className="rounded-xl"
+                                    className="rounded-xl IllustrationImage"
                                     style={{
                                         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1);"
                                     }}
