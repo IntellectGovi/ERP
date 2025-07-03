@@ -1,22 +1,37 @@
+"use client";
+
 import { useState } from "react";
 import { AppSidebar } from "../../components/SideBar/AppSidebar";
 import { DashboardStats } from "../../components/SideBar/DashboardStats";
 import { RecentActivities } from "../../components/SideBar/RecentActivity";
-import { Hamburger, HamburgerIcon } from "lucide-react";
 import { Menu } from "lucide-react";
+import "../../styles/dashboard.css";
+
 export default function Dashboard() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const isMobile = window.innerWidth <= 768;
+
   return (
     <div className="sidebar-provider">
-      {isVisible && <AppSidebar />}
-      <div className="sidebar-inset">
+      <div
+        className={`sidebar-container ${
+          isVisible ? "sidebar-visible" : "sidebar-hidden"
+        }`}
+      >
+        <AppSidebar />
+      </div>
+
+      <div
+        className={`sidebar-inset ${isVisible ? "with-sidebar" : "full-width"}`}
+      >
         <header className="header">
           <div className="header-content">
-            <Menu
+            {/* <Menu
               style={{ cursor: "pointer" }}
               onClick={() => setIsVisible(!isVisible)}
-            ></Menu>
-            <div className="separator-vertical"></div>
+              className="menu-toggle"
+            />
+            <div className="separator-vertical"></div> */}
             <nav className="breadcrumb">
               <a href="#" className="breadcrumb-link">
                 ERP System
@@ -25,6 +40,7 @@ export default function Dashboard() {
               <span className="breadcrumb-current">Dashboard</span>
             </nav>
           </div>
+
           <div className="header-actions">
             <button className="btn btn-outline btn-icon">
               <svg
@@ -68,6 +84,13 @@ export default function Dashboard() {
               </svg>
             </button>
           </div>
+          {isMobile && (
+            <Menu
+              style={{ cursor: "pointer" }}
+              onClick={() => setIsVisible(!isVisible)}
+              className="menu-toggle"
+            />
+          )}
         </header>
 
         <div className="dashboard-content">
