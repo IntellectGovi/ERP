@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StudentSvg from "../../components/svg/Student";
-import ReactSelect from "../../components/ReactSelect/ReactSelect";
-import axios from "axios";
+
+import { LoginAPI } from "../../networkServices/Login/Login";
 
 const LoginSignupPage = ({ type }) => {
   return (
@@ -15,14 +15,14 @@ const LoginTile = ({ type }) => {
   const [values, setValues] = useState({});
   const [roles, setRoles] = useState([]);
 
-  // const roleType = async () => {
-  //   const reponse = axios.get("http://192.168.1.11:5000/api/CommonData/getAllRoles")
-  //   setRoles(reponse);
-  // }
+  const roleType = async () => {
+    const reponse = LoginAPI();
+    setRoles(reponse);
+  };
 
-  // useEffect(() => {
-  //   roleType();
-  // }, [])
+  useEffect(() => {
+    roleType();
+  }, []);
 
   // const roles = [
   //   { name: "New York", code: "NY" },

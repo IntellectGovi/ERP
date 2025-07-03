@@ -1,18 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    loading: false,
-}
+  loading: false,
+};
 
 export const loadingSlice = createSlice({
-    name: "loadingSlice",
-    initialState,
-    reducers: {
-        setLoading: (state, action) => {
-            state.loading = action.payload
-        }
-    }
-})
-
-export const { setLoading } = loadingSlice.actions
-export default loadingSlice.reducer
+  name: "loadingSlice",
+  initialState,
+  reducers: {
+    setLoading: (state, actions) => {
+      state.loading = actions.payload;
+    },
+  },
+});
+export const { setLoading } = loadingSlice.actions;
+export default loadingSlice.reducer;

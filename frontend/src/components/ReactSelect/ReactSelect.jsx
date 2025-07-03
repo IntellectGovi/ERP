@@ -3,6 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useEffect } from "react";
 
 export default function ReactSelect(values, setValues) {
   const [age, setAge] = React.useState("");
@@ -10,6 +11,10 @@ export default function ReactSelect(values, setValues) {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  useEffect(() => {
+    setValues(age);
+  }, [age]);
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
@@ -26,8 +31,7 @@ export default function ReactSelect(values, setValues) {
             {ele?.name}
           </MenuItem>
         ))}
-
       </Select>
-    </FormControl >
+    </FormControl>
   );
 }
