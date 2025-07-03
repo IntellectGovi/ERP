@@ -26,12 +26,16 @@ export default function Dashboard() {
       >
         <header className="header">
           <div className="header-content">
-            {/* <Menu
-              style={{ cursor: "pointer" }}
-              onClick={() => setIsVisible(!isVisible)}
-              className="menu-toggle"
-            />
-            <div className="separator-vertical"></div> */}
+            {!isMobile && (
+              <>
+                <Menu
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setIsVisible(!isVisible)}
+                  className="menu-toggle"
+                />
+                <div className="separator-vertical"></div>
+              </>
+            )}
             <nav className="breadcrumb">
               <a href="#" className="breadcrumb-link">
                 ERP System
