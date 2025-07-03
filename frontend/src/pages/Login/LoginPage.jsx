@@ -3,10 +3,11 @@ import StudentSvg from "../../components/svg/Student";
 import ReactSelect from "../../components/ReactSelect/ReactSelect";
 import axios from "axios";
 
-const LoginSignupPage = () => {
+const LoginSignupPage = ({ type }) => {
+  debugger;
   return (
     <div className="loginMain">
-      <LoginTile />
+      <LoginTile type={type} />
     </div>
   );
 };
@@ -15,17 +16,14 @@ const LoginTile = ({ type }) => {
   const [values, setValues] = useState({});
   const [roles, setRoles] = useState([]);
 
-
   // const roleType = async () => {
   //   const reponse = axios.get("http://192.168.1.11:5000/api/CommonData/getAllRoles")
   //   setRoles(reponse);
   // }
 
-
   // useEffect(() => {
   //   roleType();
   // }, [])
-
 
   // const roles = [
   //   { name: "New York", code: "NY" },
@@ -43,7 +41,7 @@ const LoginTile = ({ type }) => {
     }));
   };
 
-  const handleSelect = (value) => { };
+  const handleSelect = (value) => {};
 
   return (
     <div className="login-wrapper bg-white">
@@ -71,28 +69,58 @@ const LoginTile = ({ type }) => {
             className="login-input"
             onChange={(e) => handleInputChange(e, "password")}
           />
-          {type === "registration" && <>
-            <input
-              type="text"
-              placeholder="New Password"
-              className="login-input"
-              onChange={(e) => handleInputChange(e, "newPassword")}
-            />
-            <input
-              type="text"
-              placeholder="New Password"
-              className="login-input"
-              onChange={(e) => handleInputChange(e, "newPassword")}
-            />
-          </>
-          }
+          {type === "registration" && (
+            <>
+              <input
+                type="text"
+                placeholder="Username"
+                className="login-input"
+                onChange={(e) => handleInputChange(e, "Username")}
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                className="login-input"
+                onChange={(e) => handleInputChange(e, "email")}
+              />
+              <input
+                type="text"
+                placeholder="New Password"
+                className="login-input"
+                onChange={(e) => handleInputChange(e, "newPassword")}
+              />
+              <input
+                type="text"
+                placeholder="Confirm Password"
+                className="login-input"
+                onChange={(e) => handleInputChange(e, "confirmPassword")}
+              />
+            </>
+          )}
           {/* </div> */}
-          <div className="forgot-link">
+          {/* <div className="forgot-link">
             <a href="#">Forgot password?</a>
-          </div>
-          <button type="submit" className="login-button" >
-            Get Started
+          </div> */}
+          <button type="submit" className="login-button">
+            {type != "login" ? "Sign Up" : "Login"}
           </button>
+          {type === "login" && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "12px",
+                fontSize: "0.875rem",
+              }}
+            >
+              <p className="" style={{ color: "black" }}>
+                New User?
+              </p>
+              <div className="forgot-link">
+                <a href="/signup">Sign Up</a>
+              </div>
+            </div>
+          )}
         </form>
         <div className="separator">
           <span>Or sign in with</span>
