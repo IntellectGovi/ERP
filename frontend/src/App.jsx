@@ -35,8 +35,8 @@ function App() {
           path="/login"
           element={
             <OpenRoute>
-              {/* <LoginSignupPage type="login" /> */}
-              <Dashboard />
+              <LoginSignupPage type="login" />
+              {/* <Dashboard /> */}
             </OpenRoute>
           }
         />
@@ -51,7 +51,15 @@ function App() {
         />
 
         {/* Protected Route */}
-        <Route path="/dashboard" element={<ProtectedRoute></ProtectedRoute>} />
+        {/* <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        /> */}
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>
   );

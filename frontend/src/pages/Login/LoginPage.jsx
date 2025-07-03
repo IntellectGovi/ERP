@@ -4,7 +4,6 @@ import ReactSelect from "../../components/ReactSelect/ReactSelect";
 import axios from "axios";
 
 const LoginSignupPage = ({ type }) => {
-  debugger;
   return (
     <div className="loginMain">
       <LoginTile type={type} />

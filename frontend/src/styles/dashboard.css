@@ -360,7 +360,7 @@
   }
 
   .header-actions {
-    display: none;
+    /* display: none; */
   }
 }
 
@@ -414,6 +414,6 @@
   }
 
   .header-actions {
-    display: none;
+    /* display: none; */
   }
 }

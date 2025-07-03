@@ -527,7 +527,7 @@ export default function SchoolERPLanding() {
                             <div className="cta-form">
                                 <form className="cta-form-inner">
                                     <Input type="email" placeholder="Enter your school email" />
-                                    <Button type="submit" variant="outline">
+                                    <Button type="submit" variant="outline" onClick={() => { }}>
                                         Start Free Trial
                                     </Button>
                                 </form>
