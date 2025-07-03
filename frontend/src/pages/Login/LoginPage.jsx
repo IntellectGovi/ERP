@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import StudentSvg from "../../components/svg/Student";
 
 import { LoginAPI } from "../../networkServices/Login/Login";
+import ReactSelect from "../../components/ReactSelect/ReactSelect";
 
 const LoginSignupPage = ({ type }) => {
   return (
@@ -13,7 +14,17 @@ const LoginSignupPage = ({ type }) => {
 
 const LoginTile = ({ type }) => {
   const [values, setValues] = useState({});
+  console.log("values", values);
   const [roles, setRoles] = useState([]);
+
+  const handleReactSelect = (name, value) => {
+    setValues((val) => {
+      return {
+        ...val,
+        [name]: value,
+      };
+    });
+  };
 
   const roleType = async () => {
     const reponse = LoginAPI();
@@ -46,7 +57,18 @@ const LoginTile = ({ type }) => {
         <h2 className="login-title">Sign in with email</h2>
         <p className="login-subtitle">Welcome to the ERP</p>
         <form className="login-form">
-        
+          <ReactSelect
+            placeholderName={"Status"}
+            name="Status"
+            value={values?.Status?.value}
+            handleChange={handleReactSelect}
+            dynamicOptions={[
+              { label: "Admin", value: "1" },
+              { label: "Staff", value: "0" },
+              { label: "Student", value: "2" },
+            ]}
+            searchable={false}
+          />
           <input
             type="email"
             placeholder="Email"

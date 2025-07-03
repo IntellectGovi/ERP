@@ -1,0 +1,373 @@
+/* React Input Component Styles */
+
+/* Base input container */
+.react-input-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Label styles */
+.react-input-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: black;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.react-input-label--required::after {
+  content: " *";
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.react-input-label--error {
+  color: #ef4444;
+}
+
+.react-input-label--focused {
+  color: #3b82f6;
+}
+
+/* Input wrapper for positioning */
+.react-input-wrapper {
+  position: relative;
+}
+
+/* Base input styles */
+.react-input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: black;
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+
+.react-input-field::placeholder {
+  color: #9ca3af;
+  transition: opacity 0.3s ease;
+}
+
+/* Input states */
+.react-input-field:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.react-input-field:focus::placeholder {
+  opacity: 0.7;
+}
+
+.react-input-field:hover:not(:disabled) {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.react-input-field--error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.react-input-field--error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.react-input-field--success {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.react-input-field--success:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.react-input-field:disabled {
+  background-color: #f9fafb;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Input with icons */
+.react-input-field--with-left-icon {
+  padding-left: 2.75rem;
+}
+
+.react-input-field--with-right-icon {
+  padding-right: 2.75rem;
+}
+
+/* Icon styles */
+.react-input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+  pointer-events: none;
+}
+
+.react-input-icon--left {
+  left: 0.75rem;
+}
+
+.react-input-icon--right {
+  right: 0.75rem;
+}
+
+.react-input-icon--clickable {
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.react-input-icon--clickable:hover {
+  color: #374151;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Focused state icon colors */
+.react-input-wrapper--focused .react-input-icon {
+  color: #3b82f6;
+}
+
+.react-input-wrapper--error .react-input-icon {
+  color: #ef4444;
+}
+
+.react-input-wrapper--success .react-input-icon {
+  color: #10b981;
+}
+
+/* Error message */
+.react-input-error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #ef4444;
+  animation: slideInDown 0.3s ease-out;
+}
+
+.react-input-error-icon {
+  height: 1rem;
+  width: 1rem;
+  flex-shrink: 0;
+}
+
+/* Success message */
+.react-input-success-message {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #10b981;
+  animation: slideInDown 0.3s ease-out;
+}
+
+.react-input-success-icon {
+  height: 1rem;
+  width: 1rem;
+  flex-shrink: 0;
+}
+
+/* Help text */
+.react-input-help-text {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Floating label variant */
+.react-input-container--floating {
+  position: relative;
+}
+
+.react-input-floating-label {
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+  font-size: 1rem;
+  color: #9ca3af;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: white;
+  padding: 0 0.25rem;
+  z-index: 1;
+}
+
+.react-input-floating-label--active {
+  top: -0.5rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.react-input-floating-label--error {
+  color: #ef4444;
+}
+
+.react-input-field--floating {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Input sizes */
+.react-input-field--small {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.react-input-field--large {
+  padding: 1rem 1.25rem;
+  font-size: 1.125rem;
+}
+
+.react-input-field--small.react-input-field--with-left-icon {
+  padding-left: 2.25rem;
+}
+
+.react-input-field--small.react-input-field--with-right-icon {
+  padding-right: 2.25rem;
+}
+
+.react-input-field--large.react-input-field--with-left-icon {
+  padding-left: 3.25rem;
+}
+
+.react-input-field--large.react-input-field--with-right-icon {
+  padding-right: 3.25rem;
+}
+
+/* Character counter */
+.react-input-counter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.react-input-counter--error {
+  color: #ef4444;
+}
+
+/* Loading state */
+.react-input-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.react-input-loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Animations */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Focus ring animation */
+@keyframes focusRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+.react-input-field:focus {
+  animation: focusRing 0.6s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .react-input-field {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+
+  .react-input-field--small {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .react-input-field--large {
+    padding: 1.125rem 1.25rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .react-input-field {
+    background-color: white;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+
+  .react-input-field:focus {
+    /* border-color: #60a5fa; */
+  }
+
+  .react-input-label {
+    color: black;
+  }
+
+  .react-input-floating-label {
+    background-color: #1f2937;
+  }
+}

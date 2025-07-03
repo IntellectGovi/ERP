@@ -1,211 +1,217 @@
-import { Tooltip } from "primereact/tooltip";
-import React, { useState, useRef, useEffect } from "react";
-import Select, { components } from "react-select";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import {useLocalStorage} from "../../hooks/useLocalStorage";
-const { ValueContainer, Placeholder } = components;
+"use client";
 
-const CustomValueContainer = ({ children, ...props }) => (
-  <ValueContainer {...props}>
-    <Placeholder {...props} isFocused={props.isFocused} className="truncate">
-      {props.selectProps.placeholder}
-    </Placeholder>
-    {React.Children.map(children, (child) =>
-      child && child.type !== Placeholder ? child : null
-    )}
-  </ValueContainer>
+import { useState, useRef, useEffect } from "react";
+import { ChevronDown, Search, X } from "lucide-react";
+import "../../styles/react-select.css";
 
-);
-
-
-const ReactSelect = ({
+export default function ReactSelect({
   placeholderName,
-  searchable,
-  defaultValue,
-  respclass,
-  id,
-  handleChange,
-  value,
-  requiredClassName,
-  dynamicOptions,
   name,
-  inputId,
-  isDisabled,
-  removeIsClearable,
-  ref,
-  DropdownIndicator,
-  tabIndex,
-  onKeyDown,
-  handleFormatlabel,
-}) => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const selectRef = useRef(null);
+  value,
+  handleChange,
+  dynamicOptions,
+  searchable = false,
+  respclass = "",
+  disabled = false,
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredOptions, setFilteredOptions] = useState(dynamicOptions);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const dropdownRef = useRef(null);
+  const searchInputRef = useRef(null);
 
+  // Find selected option
+  const selectedOption = dynamicOptions.find(
+    (option) => option.value === value
+  );
 
-  const customStyles = {
-    control: (base, state) => ({
-      ...base,
-      height: 15,
-      minHeight: "24px !important",
-      width: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      flexDirection: "row",
-      flexWrap: "nowrap",
-      borderColor: state.isFocused ? "#ced4da" : "#ced4da",
-      boxShadow: "none",
-      whiteSpace: "normal",
+  // Filter options based on search term with smooth animation
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (searchable && searchTerm) {
+        const filtered = dynamicOptions.filter((option) =>
+          option.label.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredOptions(filtered);
+      } else {
+        setFilteredOptions(dynamicOptions);
+      }
+    }, 10); // Small delay for smooth filtering
 
-      // fontWeight: " normal"
-    }),
-    placeholder: (defaultStyles, state) => {
-      return {
-        ...defaultStyles,
-        color: "none",
-        position: "absolute",
-        top: state.hasValue || state.selectProps.inputValue ? -8 : "",
-        backgroundColor:
-          state.hasValue || state.selectProps.inputValue
-            ? "white"
-            : "transparent",
-        transition: "top 0.1s, font-size 0.1s",
-        fontSize:
-          state.hasValue || state.selectProps.inputValue ? "13px" : "12px",
-        lineHeight: "18px",
-        width: "80%",
-        fontWeight:
-          state.hasValue || state.selectProps.isFocused ? " 600" : "500",
-      };
-    },
-    menu: (styles) => ({
-      ...styles,
-      width: "100%",
-      fontSize: 12,
-      padding: 0,
-    }),
-    option: (provided) => ({
-      ...provided,
-      borderBottom: "1px solid lightgray", 
-      // padding: "0px 0px 0px 5px !important",
-      padding: "3px 5px 3px 5px !important",
-    }),
-    menuList: (styles) => ({
-      ...styles,
-      width: "100%",
-      fontSize: 12,
-      padding: 0,
-    }),
-    container: (provided, state) => ({
-      ...provided,
-      // marginTop: 50
-    }),
-    valueContainer: (provided, state) => ({
-      ...provided,
-      overflow: "visible",
-    }),
-    menuPortal: (base) => ({ ...base, zIndex: 9999 })
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm, dynamicOptions, searchable]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Focus search input when dropdown opens
+  useEffect(() => {
+    if (isOpen && searchable && searchInputRef.current) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 10);
+    }
+  }, [isOpen, searchable]);
+
+  const openDropdown = () => {
+    if (!disabled) {
+      setIsAnimating(true);
+      setIsOpen(true);
+      setSearchTerm("");
+      setTimeout(() => setIsAnimating(false), 200);
+    }
   };
 
+  const closeDropdown = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setSearchTerm("");
+      setIsAnimating(false);
+    }, 150);
+  };
 
+  const handleOptionSelect = (option) => {
+    handleChange(name, option);
+    closeDropdown();
+  };
 
-  const CustomInput = ({ getDynamicClass, ...props }) => (
-    <components.Input {...props} inputClassName={getDynamicClass()} />
-  );
+  const handleClear = (e) => {
+    e.stopPropagation();
+    handleChange(name, null);
+  };
 
-  const getDynamicClass = () => requiredClassName;
-  // const getDynamicClass = () => "";
-
-  const DefaultDropdownIndicator = () => (
-    <div className="custom-dropdown-indicator">
-      {/* !DropdownIndicator */}
-      {removeIsClearable && (
-        <svg
-          height="20"
-          width="20"
-          viewBox="0 0 20 20"
-          aria-hidden="true"
-          focusable="false"
-          className="css-tj5bde-Svg"
-        >
-          <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-        </svg>
-      )}
-    </div>
-  );
-
-  const isMobile = window.innerWidth <= 800;
-  let CustomComponent;
-  if (isMobile) {
-    CustomComponent = {
-      ValueContainer: CustomValueContainer,
-      DropdownIndicator: DefaultDropdownIndicator,
-    };
-  } else {
-    CustomComponent = {
-      ValueContainer: CustomValueContainer,
-      Input: (props) => (
-        <CustomInput {...props} getDynamicClass={getDynamicClass} />
-      ),
-      DropdownIndicator: DefaultDropdownIndicator,
-    };
-  }
-
-
-  let theme = useLocalStorage("theme", "get");
+  const toggleDropdown = () => {
+    if (isOpen) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  };
 
   return (
-    <>
-      <Tooltip target={`#${id}`} position="top" content={(placeholderName)} />
-      <div className={respclass}>
-        <div className="form-group">
+    <div className={respclass}>
+      <div className="react-select-container" ref={dropdownRef}>
+        {/* Select Button */}
+        <button
+          type="button"
+          onClick={toggleDropdown}
+          disabled={disabled}
+          className={`
+            react-select-button
+            ${disabled ? "react-select-button--disabled" : ""}
+            ${isOpen ? "react-select-button--open" : ""}
+          `}
+        >
+          <div className="react-select-button-content">
+            <span
+              className={`
+                react-select-button-text
+                ${
+                  selectedOption
+                    ? "react-select-button-text--selected"
+                    : "react-select-button-text--placeholder"
+                }
+              `}
+            >
+              {selectedOption ? selectedOption.label : placeholderName}
+            </span>
+            <div className="react-select-button-actions">
+              {selectedOption && !disabled && (
+                <div
+                  onClick={handleClear}
+                  className="react-select-clear-button"
+                >
+                  <X className="react-select-clear-icon" />
+                </div>
+              )}
+              <ChevronDown
+                className={`react-select-chevron ${
+                  isOpen ? "react-select-chevron--open" : ""
+                }`}
+              />
+            </div>
+          </div>
+        </button>
 
-          <Select
-            options={dynamicOptions ? dynamicOptions : []}
-            isSearchable={searchable}
-            defaultValue={defaultValue}
-            formatOptionLabel={({ label, ...rest }) => {
-              if (handleFormatlabel) {
-                return handleFormatlabel(name, label, rest);
-              }
+        {/* Dropdown */}
+        <div
+          className={`react-select-dropdown ${
+            isOpen
+              ? "react-select-dropdown--open"
+              : "react-select-dropdown--closed"
+          }`}
+        >
+          <div className="react-select-dropdown-inner">
+            {/* Search Input */}
+            {searchable && (
+              <div className="react-select-search-container">
+                <div className="react-select-search-wrapper">
+                  <Search className="react-select-search-icon" />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    placeholder="Search options..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="react-select-search-input"
+                  />
+                </div>
+              </div>
+            )}
 
-              return <div>{label}</div>;
-            }}
-            components={CustomComponent}
-            id={id}
-            ref={selectRef}
-            inputId={inputId}
-            value={
-              value
-                ? dynamicOptions?.find(
-                    (option) => String(option?.value) === String(value)
-                  )
-                : ""
-            }
-            styles={customStyles}
-            placeholder={placeholderName}
-            onChange={handleChange ? (e) => handleChange(name, e) : () => {}}
-            isDisabled={isDisabled}
-            className={requiredClassName}
-            menuPortalTarget={document.body}
-            scrollMenuIntoView={false}
-            classNamePrefix={`remove-extrapadding ${theme}`}
-            onKeyDown={onKeyDown}
-            isClearable={!removeIsClearable}
-            menuPlacement="auto"
-            menuPosition="absolute"
-            // tabIndex={tabIndex ? tabIndex : "-1"}
-            // menuIsOpen={true}
-            // onMenuOpen={handleMenuOpen}
-            // onMenuClose={handleMenuClose}
-          />
+            {/* Options List */}
+            <div className="react-select-options-container">
+              {filteredOptions.length > 0 ? (
+                <div className="react-select-options-list">
+                  {filteredOptions.map((option, index) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => handleOptionSelect(option)}
+                      className={`
+                        react-select-option
+                        ${
+                          selectedOption?.value === option.value
+                            ? "react-select-option--selected"
+                            : ""
+                        }
+                        ${isOpen ? "react-select-option--animated" : ""}
+                      `}
+                      style={{
+                        animationDelay: `${index * 20}ms`,
+                        borderBottom:
+                          index === filteredOptions.length - 1
+                            ? "none"
+                            : "1px solid lightgray",
+                      }}
+                    >
+                      <span className="react-select-option-text">
+                        {option.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="react-select-empty-state">
+                  <Search className="react-select-empty-icon" />
+                  <p>No options found</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-
-
-
-    </>
+    </div>
   );
-};
-
-export default ReactSelect;
+}
