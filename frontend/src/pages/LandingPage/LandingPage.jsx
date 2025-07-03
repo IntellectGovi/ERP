@@ -23,12 +23,13 @@ import "../../styles/badge.css"
 import "../../styles/layout.css"
 
 export default function SchoolERPLanding() {
+    const isMobile = window.innerWidth <= 800;
     return (
         <div className="flex flex-col h-full w-full">
             {/* Header */}
             <header className="header">
                 <Link className="logo" href="#">
-                    <GraduationCap className="icon-xl text-blue-600" />
+                    {isMobile && <GraduationCap className="icon-lg text-blue-600" />}
                     <span className="logo-text">CampusHub</span>
                 </Link>
                 <nav className="nav">
