@@ -24,13 +24,6 @@ const LoginTile = ({ type }) => {
     roleType();
   }, []);
 
-  // const roles = [
-  //   { name: "New York", code: "NY" },
-  //   { name: "Rome", code: "RM" },
-  //   { name: "London", code: "LDN" },
-  //   { name: "Istanbul", code: "IST" },
-  //   { name: "Paris", code: "PRS" },
-  // ];
   const handleInputChange = (e, name) => {
     const { value } = e.target;
 
@@ -53,7 +46,7 @@ const LoginTile = ({ type }) => {
         <h2 className="login-title">Sign in with email</h2>
         <p className="login-subtitle">Welcome to the ERP</p>
         <form className="login-form">
-          {/* <ReactSelect values={roles} setValues={setValues} /> */}
+        
           <input
             type="email"
             placeholder="Email"

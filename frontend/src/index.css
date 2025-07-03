@@ -21,7 +21,6 @@
   background-color: #666;
 }
 
-
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -335,6 +334,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0 1rem;
+}
+html {
+  scroll-behavior: smooth;
 }
 
 .header-actions {
@@ -1019,5 +1021,3 @@ body {
     margin-left: 0;
   }
 }
-
-

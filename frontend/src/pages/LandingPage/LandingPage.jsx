@@ -41,18 +41,18 @@ export default function SchoolERPLanding() {
           <span className="logo-text">CampusHub</span>
         </Link>
         <nav className="nav">
-          <Link className="nav-link" href="#features">
+          <a className="nav-link" href="#features">
             Features
-          </Link>
-          <Link className="nav-link" href="#benefits">
+          </a>
+          <a className="nav-link" href="#benefits">
             Benefits
-          </Link>
-          <Link className="nav-link" href="#pricing">
+          </a>
+          <a className="nav-link" href="#pricing">
             Pricing
-          </Link>
-          <Link className="nav-link" href="#contact">
+          </a>
+          <a className="nav-link" href="#contact">
             Contact
-          </Link>
+          </a>
         </nav>
         <div className="header-actions">
           <Button variant="ghost" size="md" redirect="/login">
@@ -85,9 +85,11 @@ export default function SchoolERPLanding() {
                   <Button size="lg" redirect="/dashboard">
                     Start Free Trial
                   </Button>
-                  <Button variant="outline" size="lg">
-                    Schedule Demo
-                  </Button>
+                  <a href="#contact">
+                    <Button variant="outline" size="lg">
+                      Schedule Demo
+                    </Button>
+                  </a>
                 </div>
                 <div className="hero-features">
                   <div className="hero-feature">
@@ -566,9 +568,15 @@ export default function SchoolERPLanding() {
               <div className="cta-form">
                 <form className="cta-form-inner">
                   <Input type="email" placeholder="Enter your school email" />
-                  <Button type="submit" variant="outline">
+                  <button    
+                    variant="outline"
+                    style={{ background: "#0b358f" }}
+                    href="mailto:govind.upadhayay19@gmail.com?subject=Start%20Free%20Trial&body=Hi,%20I%20want%20to%20start%20my%20free%20trial."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Start Free Trial
-                  </Button>
+                  </button>
                 </form>
                 <p className="cta-disclaimer">
                   30-day free trial • No credit card required • Setup in minutes

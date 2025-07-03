@@ -1,37 +1,211 @@
-import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { useEffect } from "react";
+import { Tooltip } from "primereact/tooltip";
+import React, { useState, useRef, useEffect } from "react";
+import Select, { components } from "react-select";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
+const { ValueContainer, Placeholder } = components;
 
-export default function ReactSelect(values, setValues) {
-  const [age, setAge] = React.useState("");
+const CustomValueContainer = ({ children, ...props }) => (
+  <ValueContainer {...props}>
+    <Placeholder {...props} isFocused={props.isFocused} className="truncate">
+      {props.selectProps.placeholder}
+    </Placeholder>
+    {React.Children.map(children, (child) =>
+      child && child.type !== Placeholder ? child : null
+    )}
+  </ValueContainer>
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+);
+
+
+const ReactSelect = ({
+  placeholderName,
+  searchable,
+  defaultValue,
+  respclass,
+  id,
+  handleChange,
+  value,
+  requiredClassName,
+  dynamicOptions,
+  name,
+  inputId,
+  isDisabled,
+  removeIsClearable,
+  ref,
+  DropdownIndicator,
+  tabIndex,
+  onKeyDown,
+  handleFormatlabel,
+}) => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const selectRef = useRef(null);
+
+
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      height: 15,
+      minHeight: "24px !important",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
+      flexWrap: "nowrap",
+      borderColor: state.isFocused ? "#ced4da" : "#ced4da",
+      boxShadow: "none",
+      whiteSpace: "normal",
+
+      // fontWeight: " normal"
+    }),
+    placeholder: (defaultStyles, state) => {
+      return {
+        ...defaultStyles,
+        color: "none",
+        position: "absolute",
+        top: state.hasValue || state.selectProps.inputValue ? -8 : "",
+        backgroundColor:
+          state.hasValue || state.selectProps.inputValue
+            ? "white"
+            : "transparent",
+        transition: "top 0.1s, font-size 0.1s",
+        fontSize:
+          state.hasValue || state.selectProps.inputValue ? "13px" : "12px",
+        lineHeight: "18px",
+        width: "80%",
+        fontWeight:
+          state.hasValue || state.selectProps.isFocused ? " 600" : "500",
+      };
+    },
+    menu: (styles) => ({
+      ...styles,
+      width: "100%",
+      fontSize: 12,
+      padding: 0,
+    }),
+    option: (provided) => ({
+      ...provided,
+      borderBottom: "1px solid lightgray", 
+      // padding: "0px 0px 0px 5px !important",
+      padding: "3px 5px 3px 5px !important",
+    }),
+    menuList: (styles) => ({
+      ...styles,
+      width: "100%",
+      fontSize: 12,
+      padding: 0,
+    }),
+    container: (provided, state) => ({
+      ...provided,
+      // marginTop: 50
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      overflow: "visible",
+    }),
+    menuPortal: (base) => ({ ...base, zIndex: 9999 })
   };
 
-  useEffect(() => {
-    setValues(age);
-  }, [age]);
+
+
+  const CustomInput = ({ getDynamicClass, ...props }) => (
+    <components.Input {...props} inputClassName={getDynamicClass()} />
+  );
+
+  const getDynamicClass = () => requiredClassName;
+  // const getDynamicClass = () => "";
+
+  const DefaultDropdownIndicator = () => (
+    <div className="custom-dropdown-indicator">
+      {/* !DropdownIndicator */}
+      {removeIsClearable && (
+        <svg
+          height="20"
+          width="20"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+          focusable="false"
+          className="css-tj5bde-Svg"
+        >
+          <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+        </svg>
+      )}
+    </div>
+  );
+
+  const isMobile = window.innerWidth <= 800;
+  let CustomComponent;
+  if (isMobile) {
+    CustomComponent = {
+      ValueContainer: CustomValueContainer,
+      DropdownIndicator: DefaultDropdownIndicator,
+    };
+  } else {
+    CustomComponent = {
+      ValueContainer: CustomValueContainer,
+      Input: (props) => (
+        <CustomInput {...props} getDynamicClass={getDynamicClass} />
+      ),
+      DropdownIndicator: DefaultDropdownIndicator,
+    };
+  }
+
+
+  let theme = useLocalStorage("theme", "get");
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-      <InputLabel id="demo-select-small-label">Age</InputLabel>
-      <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
-        value={age}
-        label="Age"
-        onChange={handleChange}
-      >
-        {values?.map((ele, index) => (
-          <MenuItem key={index} value={ele?.id}>
-            {ele?.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+      <Tooltip target={`#${id}`} position="top" content={(placeholderName)} />
+      <div className={respclass}>
+        <div className="form-group">
+
+          <Select
+            options={dynamicOptions ? dynamicOptions : []}
+            isSearchable={searchable}
+            defaultValue={defaultValue}
+            formatOptionLabel={({ label, ...rest }) => {
+              if (handleFormatlabel) {
+                return handleFormatlabel(name, label, rest);
+              }
+
+              return <div>{label}</div>;
+            }}
+            components={CustomComponent}
+            id={id}
+            ref={selectRef}
+            inputId={inputId}
+            value={
+              value
+                ? dynamicOptions?.find(
+                    (option) => String(option?.value) === String(value)
+                  )
+                : ""
+            }
+            styles={customStyles}
+            placeholder={placeholderName}
+            onChange={handleChange ? (e) => handleChange(name, e) : () => {}}
+            isDisabled={isDisabled}
+            className={requiredClassName}
+            menuPortalTarget={document.body}
+            scrollMenuIntoView={false}
+            classNamePrefix={`remove-extrapadding ${theme}`}
+            onKeyDown={onKeyDown}
+            isClearable={!removeIsClearable}
+            menuPlacement="auto"
+            menuPosition="absolute"
+            // tabIndex={tabIndex ? tabIndex : "-1"}
+            // menuIsOpen={true}
+            // onMenuOpen={handleMenuOpen}
+            // onMenuClose={handleMenuClose}
+          />
+        </div>
+      </div>
+
+
+
+    </>
   );
-}
+};
+
+export default ReactSelect;

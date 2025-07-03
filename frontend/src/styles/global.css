@@ -218,6 +218,9 @@ body {
   font-weight: 500;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 /* Layout Styles */
 .main-content {
   flex: 1;
