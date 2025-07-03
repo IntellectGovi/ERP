@@ -23,13 +23,13 @@ import "../../styles/badge.css"
 import "../../styles/layout.css"
 
 export default function SchoolERPLanding() {
-    const isMobile = window.innerWidth <= 800;
+
     return (
         <div className="flex flex-col h-full w-full">
             {/* Header */}
             <header className="header">
                 <Link className="logo" href="#">
-                    {isMobile && <GraduationCap className="icon-lg text-blue-600" />}
+                    {<GraduationCap className="icon-lg text-blue-600" />}
                     <span className="logo-text">CampusHub</span>
                 </Link>
                 <nav className="nav">
@@ -403,7 +403,7 @@ export default function SchoolERPLanding() {
                                             <span className="author-initials">LC</span>
                                         </div>
                                         <div className="author-info">
-                                            <h4>Black Devil(Devi prasad)</h4>
+                                            <h4>Vikky Singh</h4>
                                             <p>IT Director, Metro Academy</p>
                                         </div>
                                     </div>
@@ -449,7 +449,7 @@ export default function SchoolERPLanding() {
                                             Email support
                                         </li>
                                     </ul>
-                                    <Button className="w-full bg-transparent" variant="outline" style={{ width: "16vw" }}>
+                                    <Button className="w-full bg-transparent" variant="outline">
                                         Get Started
                                     </Button>
                                 </CardContent>
@@ -544,12 +544,17 @@ export default function SchoolERPLanding() {
                     <GraduationCap className="icon-md text-blue-600" />
                     <span className="footer-brand-text">CampusHub</span>
                 </div>
-                <p className="footer-copyright">© 2024 CampusHub. All rights reserved.</p>
+                <div style={{ margin: "0 autos", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                    <p className="footer-copyright">© 2024 CampusHub. All rights reserved.</p>
+                    <span className="footer-copyright">Made with ❤️ by Govind & Akshay</span>
+                </div>
                 <nav className="footer-nav">
                     <Link href="#">Privacy Policy</Link>
                     <Link href="#">Terms of Service</Link>
                     <Link href="#">Support</Link>
                 </nav>
+
+
             </footer>
         </div>
     )

@@ -474,6 +474,7 @@
 .footer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.5rem;
   padding: 1.5rem 1rem;
   width: 100%;
@@ -526,7 +527,7 @@
   }
 
   .footer-nav {
-    margin-left: auto;
+    /* margin-left: auto; */
     gap: 1.5rem;
   }
 }
