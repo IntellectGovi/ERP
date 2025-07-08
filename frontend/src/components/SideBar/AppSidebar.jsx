@@ -206,7 +206,7 @@ export function AppSidebar() {
             </svg>
           </div>
           <div className="sidebar-brand-text">
-            <span className="sidebar-brand-title">Enterprise ERP</span>
+            <span className="sidebar-brand-title">CampusHub ERP</span>
             <span className="sidebar-brand-subtitle">Management System</span>
           </div>
         </a>
@@ -236,15 +236,15 @@ export function AppSidebar() {
         <a href="#" className="sidebar-user">
           <div className="avatar sidebar-user-avatar">
             <img
-              src="/placeholder.svg?height=32&width=32"
+              src="https://imgs.search.brave.com/YYbomx3TdkBImDBggPQsm5nVk16HE5_EeaD6nzHMGzo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMucHJvbXB0YmFz/ZS5jb20vREFMTEVf/SU1BR0VTL2JOakxY/R0hTUGdQZ2dkd1ZB/Z2pVdzgzbDJtaTEv/cmVzaXplZC8xNjg2/MjUzOTczMjEwXzgw/MHg4MDAud2VicD9h/bHQ9bWVkaWEmdG9r/ZW49YTI5M2ZhYzEt/ZTVkMC00NTQyLTgw/OTQtODhiNzA3OWI5/MTU1?height=12px"
               alt="Admin"
               className="avatar-image"
             />
             <div className="avatar-fallback">AD</div>
           </div>
           <div className="sidebar-user-info">
-            <span className="sidebar-user-name">Admin User</span>
-            <span className="sidebar-user-email">admin@company.com</span>
+            <span className="sidebar-user-name">Admin(Govind)</span>
+            <span className="sidebar-user-email">govind@company.com</span>
           </div>
           <div className="badge badge-outline sidebar-user-badge">Pro</div>
         </a>

@@ -153,7 +153,7 @@ export function AppSidebar({ ...props }) {
                   <Building2 className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Enterprise ERP</span>
+                  <span className="truncate font-semibold">CampusHub ERP</span>
                   <span className="truncate text-xs">Management System</span>
                 </div>
               </a>
